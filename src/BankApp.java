@@ -10,7 +10,7 @@ public class BankApp {
 
     public void run(){
         while (true) {
-            System.out.println("Menu\n1)deposit\n2)withdraw\n3)balance\n0)exit\nChoose");
+            printMenu();
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -18,10 +18,18 @@ public class BankApp {
                 case 1 -> actions(choice);
                 case 2 -> actions(choice);
                 case 3 -> showBalance();
-                case 0 -> {return;}
+                case 0 -> {
+                    System.out.println("Leaving BankApp");
+                    return;
+                }
                 default -> System.out.println("Invalid choice");
             }
         }
+    }
+
+    private void printMenu(){
+        System.out.println("Menu\n1)deposit\n2)withdraw\n3)balance\n0)exit");
+        System.out.print("Choose: ");
     }
 
     private void deposit(int amount){
@@ -30,9 +38,9 @@ public class BankApp {
     }
 
     private void withdraw(int amount) {
-        if ((balance -amount) > 0){
+        if (balance >= amount){
             balance -=amount;
-            System.out.println("You withdrawed: $" + amount);
+            System.out.println("You withdrew: $" + amount);
         } else {
             System.out.println("not enough funds!");
         }

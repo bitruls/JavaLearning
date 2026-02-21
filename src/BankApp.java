@@ -11,8 +11,15 @@ public class BankApp {
     public void run(){
         while (true) {
             printMenu();
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+
+            String input = scanner.nextLine().trim();
+            int choice;
+            try {
+                choice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a whole number.");
+                continue;
+            }
 
             switch (choice) {
                 case 1 -> actions(choice);
@@ -52,16 +59,27 @@ public class BankApp {
 
     private void actions(int choice) {
         System.out.println("Enter the amount:");
-        int amount = scanner.nextInt();
-        scanner.nextLine();
+        String input = scanner.nextLine();
+        int amount;
+        try {
+            amount = Integer.parseInt(input);
+
+            if (amount <= 0) {
+                System.out.println("Amount must be greater than 0.");
+                return;
+            }
+        } catch (NumberFormatException e){
+            System.out.println("please enter a whole number.");
+            return;
+        }
 
         if (choice == 1) {
             deposit(amount);
-            System.out.print("Your balance is now: ");
+            System.out.print("Your balance: ");
             showBalance();
         }else if (choice == 2) {
             withdraw(amount);
-            System.out.print("Your balance is now: ");
+            System.out.print("Your balance: ");
             showBalance();
         } else {
             System.out.println("something went wrong in the action method");

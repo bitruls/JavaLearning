@@ -22,8 +22,8 @@ public class BankApp {
             }
 
             switch (choice) {
-                case 1 -> actions(choice);
-                case 2 -> actions(choice);
+                case 1 -> depositFlow();
+                case 2 -> withdrawFlow();
                 case 3 -> showBalance();
                 case 0 -> {
                     System.out.println("Leaving BankApp");
@@ -41,7 +41,6 @@ public class BankApp {
 
     private void deposit(int amount){
         balance += amount;
-        System.out.println("You deposited: $" + amount);
     }
 
     private void withdraw(int amount) {
@@ -57,32 +56,41 @@ public class BankApp {
         System.out.println("Balance: $"+balance );
     }
 
-    private void actions(int choice) {
-        System.out.println("Enter the amount:");
+    private void depositFlow() {
+        System.out.print("Enter the amount: ");
         String input = scanner.nextLine();
         int amount;
         try {
             amount = Integer.parseInt(input);
-
-            if (amount <= 0) {
-                System.out.println("Amount must be greater than 0.");
+            if (amount <=0) {
+                System.out.println("Amount must be greater than 0");
                 return;
             }
         } catch (NumberFormatException e){
-            System.out.println("please enter a whole number.");
+            System.out.println("Please enter a whole number.");
             return;
         }
+        deposit(amount);
+        System.out.println("You deposited: $" + amount);
+        showBalance();
+    }
 
-        if (choice == 1) {
-            deposit(amount);
-            System.out.print("Your balance: ");
-            showBalance();
-        }else if (choice == 2) {
-            withdraw(amount);
-            System.out.print("Your balance: ");
-            showBalance();
-        } else {
-            System.out.println("something went wrong in the action method");
+    private void withdrawFlow() {
+        System.out.print("Enter the amount: ");
+        String input = scanner.nextLine();
+        int amount;
+        try {
+            amount = Integer.parseInt(input);
+            if (amount <=0) {
+                System.out.println("Amount must be greater than 0");
+                return;
+            }
+        } catch (NumberFormatException e){
+            System.out.println("Please enter a whole number.");
+            return;
         }
+        withdraw(amount);
+        System.out.println("You withdrew: $" + amount);
+        showBalance();
     }
 }

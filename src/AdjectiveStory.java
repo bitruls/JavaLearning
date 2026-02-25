@@ -12,9 +12,19 @@ public class AdjectiveStory {
 
     public void run() {
         System.out.println("This is an Adjective story, where the adjectives you insert will be added to a premade story.");
-        System.out.println("Please tell me how many words you will like to insert (1-3 words)");
-        int wordCount = scanner.nextInt();
-        scanner.nextLine(); // eats the next empty input from \n
+
+        int wordCount;
+        while (true) {
+            System.out.println("Please tell me how many words you will like to insert (1-3 words)");
+            String input = scanner.nextLine();
+            try {
+                wordCount = Integer.parseInt(input);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("please enter a whole number!");
+                System.out.println("-----------------------------");
+            }
+        }
 
         Story(adjectives(wordCount));
     }

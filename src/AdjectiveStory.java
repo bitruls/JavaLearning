@@ -19,8 +19,15 @@ public class AdjectiveStory {
             String input = scanner.nextLine();
             try {
                 wordCount = Integer.parseInt(input);
-                break;
+                if (wordCount >= 1 && wordCount <= 3) {
+                    break;
+                } else {
+                    System.out.println("---------------------------------------");
+                    System.out.println("Please enter a whole number between 1-3");
+                    System.out.println("---------------------------------------");
+                }
             } catch (NumberFormatException e) {
+                System.out.println("-----------------------------");
                 System.out.println("please enter a whole number!");
                 System.out.println("-----------------------------");
             }

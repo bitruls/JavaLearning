@@ -25,7 +25,7 @@ public class Main {
                     scanner.close();
                     return;
                 }
-                default -> System.out.println("Invalid choice. Try 0-2.");
+                default -> System.out.println("Invalid choice. Try 0-4.");
             }
         }
     }

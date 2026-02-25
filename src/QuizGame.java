@@ -10,7 +10,6 @@ public class QuizGame {
     }
 
     public void run() {
-        System.out.println("TBA...");
         System.out.println("This is a math quiz. For the program to work, answer with whole numbers only.");
         startGame();
 
@@ -34,23 +33,23 @@ public class QuizGame {
             int correctAnswer = entry.getValue();
 
             System.out.println("Question: " + question);
-            System.out.print("Your answer: ");
 
-            if (!scanner.hasNextInt()) {
-                System.out.println("Enter a whole number!");
-                scanner.nextLine();
-                continue;
+            int ans;
+            while (true) {
+                System.out.println("Your answer: ");
+                String input = scanner.nextLine();
+                try {
+                    ans = Integer.parseInt(input);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("Enter a whole number");
+                }
             }
-
-            int userAnswer = scanner.nextInt();
-            scanner.nextLine();
-
-            if (userAnswer == correctAnswer) {
+            if (ans == correctAnswer) {
                 System.out.println("Correct!");
                 score++;
             } else {
                 System.out.println("wrong, correct answer was: " + correctAnswer);
-
             }
         }
         System.out.println("Quiz finished! Score: " + score + "/" + qa.size());
